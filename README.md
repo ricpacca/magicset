@@ -24,6 +24,8 @@ a random UUID (or a specific one can be passed too).
 
 ### Usage example
 
+NB: Requires Java 8.
+
 ```Java
 public class Card extends UniqueItem {
     private Color color;
@@ -60,7 +62,7 @@ public class Deck {
 }
 ```
 
-### Implementations
+### Details
 
 Two implementations of a MagicSet are currently provided:
 
