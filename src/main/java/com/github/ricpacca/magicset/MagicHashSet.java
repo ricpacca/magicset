@@ -85,7 +85,7 @@ public class MagicHashSet<E extends UniqueItem> extends AbstractSet<E> implement
     @Override
     public boolean add(E e) {
         if(e == null)
-            throw new NullPointerException("Cannot add a null element to a Magic Set");
+            throw new IllegalArgumentException("Cannot add a null element to a Magic Set");
 
         return map.put(e.getId(), e) == null;
     }
@@ -171,6 +171,8 @@ public class MagicHashSet<E extends UniqueItem> extends AbstractSet<E> implement
 
     @Override
     public boolean removeFromIds(Collection<UUID> ids) {
-        return ids.stream().map(this::removeFromId).anyMatch(modified -> modified);
+        int i = size();
+        ids.forEach(this::removeFromId);
+        return size() != i;
     }
 }
