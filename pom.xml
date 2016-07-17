@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+
+    <modelVersion>4.0.0</modelVersion>
+
+    <groupId>com.github.ricpacca</groupId>
+    <artifactId>magicset</artifactId>
+    <version>1.0.0</version>
+
+    <name>magicset</name>
+    <description>
+        This library contains the implementation of a collection called MagicSet, which can be used whenever there is
+        the need to retrieve an item from the collection, given its id.
+        A MagicSet can contain items of any class extending UniqueItem. This class provides a UUID to all
+        the instances of child classes.
+    </description>
+
+    <url>http://github.com/ricpacca/magicset</url>
+
+    <licenses>
+        <license>
+            <name>MIT license</name>
+            <url>http://www.opensource.org/licenses/mit-license.php</url>
+        </license>
+    </licenses>
+
+    <scm>
+        <url>git@github.com:ricpacca/magicset.git</url>
+        <connection>scm:git:git@github.com:ricpacca/magicset.git</connection>
+        <developerConnection>scm:git:git@github.com:ricpacca/magicset.git</developerConnection>
+    </scm>
+
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <configuration>
+                    <source>1.8</source>
+                    <target>1.8</target>
+                </configuration>
+            </plugin>
+        </plugins>
+    </build>
+
+</project>
