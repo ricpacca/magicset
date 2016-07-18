@@ -16,7 +16,8 @@ There are multiple ways to handle the situation when a client needs to modify th
 Imagine that each client has a small copy of this common model, that it uses to let the player interact with the
  game components.
 
-How can a client indicate to the server what precise components of the game the player wants to modify?
+Assuming there are many instances (e.g. many cards of same classes) how can a client indicate to the server what 
+ precise components of the game the player wants to modify?
 
 One possible approach to handle the matching between server and client components is to use ids.
  
@@ -41,13 +42,18 @@ class City extends UniqueItem {
     }
 }
 
-public class Map {
+public class GameMap {
     private MagicSet<City> cities;
     
-    public Map(Collection<Card> cities) {
+    public GameMap(Collection<Card> cities) {
         cities = new MagicHashSet<>(cities);
     }
     
+    /*
+     * cityId is the UUID of the city you want to retrieve.
+     * If you have a copied instance of that city, you can simply 
+     * call copiedCity.getId() and pass the return value to this method.
+     */
     public void doSomethingInCity(UUID cityId) {
         City city = cities.getFromId(cityId);
         city.doSomething();
