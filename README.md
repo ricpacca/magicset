@@ -34,12 +34,10 @@ A MagicSet answers this need in an efficient and elegant way, allowing to store 
 ```Java
 class City extends UniqueItem {
     
-    public City(Color color) {
-        this.color = color;
-    }
+    // Somewhere in this class
     
     public void doSomething() {
-        // whatever
+        // Whatever
     }
 }
 
@@ -55,7 +53,7 @@ public class Map {
         city.doSomething();
     }
     
-    // Other methods are possible too
+    // Other methods can be called on a MagicSet too
 }
 ```
 
