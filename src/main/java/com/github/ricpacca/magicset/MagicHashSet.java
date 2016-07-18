@@ -28,6 +28,8 @@ public class MagicHashSet<E extends UniqueItem> extends AbstractSet<E> implement
     /**
      * Constructs a new, empty magic linked hash set, with the specified initial
      * capacity and the default load factor (0.75).
+     *
+     * @param initialCapacity the initial capacity of the backing hashmap
      */
     public MagicHashSet(int initialCapacity) {
         map = new HashMap<>(initialCapacity);
