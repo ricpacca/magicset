@@ -37,6 +37,22 @@ Of course you can always clone the repository and build from source.
 
 NB: The library is written in Java 8.
 
+## Features
+
+Two implementations of a MagicSet are currently provided:
+
+- MagicHashSet: it's similar to a HashSet, but instead of using the items as key and a dummy object as value in the 
+backing HashMap, it uses the UUID of the item as key and the item as value. Thus, this implementation
+does not need more memory than a normal HashSet.
+
+- LinkedMagicHashSet: this implementation differentiates from a MagicHashSet the same way in which
+ a LinkedHashSet differentiates from a HashSet, i.e. any iterator on a LinkedMagicHashset will follow
+ the insertion order of the items.
+ 
+Calling equals method on any of these implementations will follow the same behaviour of an AbstractSet, i.e. it 
+works properly across different implementations of the Set interface (e.g. checking equality between a LinkedMagicHashset 
+and a HashSet will return true if they both have the same elements).
+
 ## Usage example
 
 ```Java
@@ -79,22 +95,6 @@ public class Deck {
     // Other methods are possible too
 }
 ```
-
-## Features
-
-Two implementations of a MagicSet are currently provided:
-
-- MagicHashSet: it's similar to a HashSet, but instead of using the items as key and a dummy object as value in the 
-backing HashMap, it uses the UUID of the item as key and the item as value. Thus, this implementation
-does not need more memory than a normal HashSet.
-
-- LinkedMagicHashSet: this implementation differentiates from a MagicHashSet the same way in which
- a LinkedHashSet differentiates from a HashSet, i.e. any iterator on a LinkedMagicHashset will follow
- the insertion order of the items.
- 
-Calling equals method on any of these implementations will follow the same behaviour of an AbstractSet, i.e. it 
-works properly across different implementations of the Set interface (e.g. checking equality between a LinkedMagicHashset 
-and a HashSet will return true if they both have the same elements).
 
 
 ## Contribute
