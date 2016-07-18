@@ -1,4 +1,4 @@
-## MagicSet
+# MagicSet
 
 This library contains the implementation of a collection that I called MagicSet.
 
@@ -12,25 +12,43 @@ For example, imagine a client-server videogame where multiple clients have a sma
 (stored in the Server). Imagine that in this model there are collections of objects like cards,
 cities, rewards, etc. 
 
-There are multiple ways to handle the situation when a client needs to modify this model.
- 
-I found helpful to design a protocol that uses ids (more specifically, Java UUIDs) to indicate the objects that a player
+There are multiple ways to handle the situation when a client needs to modify this model. I found it helpful to design 
+a protocol that uses ids (more specifically, Java UUIDs) to indicate the objects that a player
 wants to use/modify in his actions, and this is why I wrote this library. 
 
 A MagicSet can contain items of any class extending UniqueItem. This class gives each instance of a child classes
 a random UUID (or a specific one can be passed too).
 
-### Installation
+## Installation
 
-### Usage example
+MagicSet is available from the Maven Central Repository using the following coordinates:
 
-NB: Requires Java 8.
+```xml
+    <dependency>
+        <groupId>com.github.ricpacca</groupId>
+        <artifactId>magicset</artifactId>
+        <version>1.0.0</version>
+    </dependency>
+```
+    
+You can also download binary release and javadoc from the 
+[maven central repository](http://search.maven.org/#search|ga|1|magicset). 
+Of course you can always clone the repository and build from source.
+
+NB: The library is written in Java 8.
+
+## Usage example
 
 ```Java
 public class Card extends UniqueItem {
     private Color color;
     
     public Card(Color color) {
+        this.color = color;
+    }
+    
+    public Card(UUID cardId, Color color) {
+        super(cardId);
         this.color = color;
     }
 }
@@ -62,7 +80,7 @@ public class Deck {
 }
 ```
 
-### Details
+## Features
 
 Two implementations of a MagicSet are currently provided:
 
@@ -77,3 +95,16 @@ does not need more memory than a normal HashSet.
 Calling equals method on any of these implementations will follow the same behaviour of an AbstractSet, i.e. it 
 works properly across different implementations of the Set interface (e.g. checking equality between a LinkedMagicHashset 
 and a HashSet will return true if they both have the same elements).
+
+
+## Contribute
+
+Please feel invited to contribute by creating a pull request to submit the code you would like to be included. 
+
+Sample code and documentation are both very appreciated contributions.
+
+
+## License
+
+This project is distributed under the terms of the MIT License. 
+See file "LICENSE" for further reference.
