@@ -3,9 +3,6 @@
 A MagicSet can be used whenever there is the need to retrieve an item from a Set.
 It has all the advantages of a Set, but gives some additional methods like getFromId(), removeFromId(), etc.
 
-This can be useful whenever there is the need to retrieve the original instance of an object from a Set (which is a 
-[popular issue](https://stackoverflow.com/questions/7283338/getting-an-element-from-a-set)).
-
 ## Motivation
 
 Imagine a multiplayer video-game, where a common model (with all the components of the game) is stored in the server,
