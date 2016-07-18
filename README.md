@@ -1,23 +1,64 @@
 # MagicSet
 
-This library contains the implementation of a collection that I called MagicSet.
-
 A MagicSet can be used whenever there is the need to retrieve an item from a Set.
 It has all the advantages of a Set, but gives some additional methods like getFromId(), removeFromId(), etc.
 
-This can be useful when we want to retrieve the original instance of an object from a Set (which is a 
+This can be useful whenever there is the need to retrieve the original instance of an object from a Set (which is a 
 [popular issue](https://stackoverflow.com/questions/7283338/getting-an-element-from-a-set)).
 
-For example, imagine a client-server videogame where multiple clients have a smaller copy of a same model
-(stored in the Server). Imagine that in this model there are collections of objects like cards,
-cities, rewards, etc. 
+## Motivation
 
-There are multiple ways to handle the situation when a client needs to modify this model. I found it helpful to design 
-a protocol that uses ids (more specifically, Java UUIDs) to indicate the objects that a player
-wants to use/modify in his actions, and this is why I wrote this library. 
+Imagine a multiplayer video-game, where a common model (with all the components of the game) is stored in the server,
+ and clients can send their actions to modify this model.
 
-A MagicSet can contain items of any class extending UniqueItem. This class gives each instance of a child classes
-a random UUID (or a specific one can be passed too).
+There are multiple ways to handle the situation when a client needs to modify the server model. 
+
+Imagine that each client has a small copy of this common model, that it uses to let the player interact with the
+ game components.
+
+How can a client indicate to the server what precise components of the game the player wants to modify?
+
+One possible approach to handle the matching between server and client components is to use ids.
+ 
+All the "interactive" components of the game can be marked with a unique id which than can be used by clients to refer 
+ univocally to game components when communicating with the server.
+ 
+Given this approach, how can the server retrieve efficiently the original instance of the items indicated by the clients
+ upon performing an action?
+ 
+A MagicSet answers this need in an efficient and elegant way, allowing to store unique items, and later manage them 
+ given only their ids.
+
+## Usage
+
+```Java
+class City extends UniqueItem {
+    
+    public City(Color color) {
+        this.color = color;
+    }
+    
+    public void doSomething() {
+        // whatever
+    }
+}
+
+public class Map {
+    private MagicSet<City> cities;
+    
+    public Map(Collection<Card> cities) {
+        cities = new MagicHashSet<>(cities);
+    }
+    
+    public void doSomethingInCity(UUID cityId) {
+        City city = cities.getFromId(cityId);
+        city.doSomething();
+    }
+    
+    // Other methods are possible too
+}
+```
+
 
 ## Installation
 
@@ -37,7 +78,10 @@ Of course you can always clone the repository and build from source.
 
 NB: The library is written in Java 8.
 
-## Features
+## Structure
+
+A MagicSet can contain items of any class extending UniqueItem. This class gives each instance of a child classes
+a random UUID (or a specific one can be passed too).
 
 Two implementations of a MagicSet are currently provided:
 
@@ -53,49 +97,8 @@ Calling equals method on any of these implementations will follow the same behav
 works properly across different implementations of the Set interface (e.g. checking equality between a LinkedMagicHashset 
 and a HashSet will return true if they both have the same elements).
 
-## Usage example
-
-```Java
-public class Card extends UniqueItem {
-    private Color color;
-    
-    public Card(Color color) {
-        this.color = color;
-    }
-    
-    public Card(UUID cardId, Color color) {
-        super(cardId);
-        this.color = color;
-    }
-}
-
-public class Deck {
-    private MagicSet<Card> cards;
-    
-    public Deck() {
-        cards = new MagicHashSet<>();
-    }
-    
-    public Deck(Collection<Card> cards) {
-        cards = new MagicHashSet<>(cards);
-    }
-    
-    public Card getCard(UUID cardId) {
-        return cards.getFromId(cardId);
-    }
-    
-    public Card popCard(UUID cardId) {
-        return cards.popFromId(cardId);
-    }
-    
-    public Card getCards(Collection<UUID> cardIds) {
-        return cards.popFromIds(cardIds);
-    }
-    
-    // Other methods are possible too
-}
-```
-
+All the methods of the library are documented and easily understandable. Do not hesitate to contact me should you need
+ more detailed explainations.
 
 ## Contribute
 
