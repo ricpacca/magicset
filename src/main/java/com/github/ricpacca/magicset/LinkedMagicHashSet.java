@@ -1,6 +1,5 @@
 package com.github.ricpacca.magicset;
 
-import java.io.Serializable;
 import java.util.Collection;
 
 /**
