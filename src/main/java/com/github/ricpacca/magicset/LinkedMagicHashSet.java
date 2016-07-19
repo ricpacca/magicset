@@ -9,7 +9,7 @@ import java.util.Collection;
  * @param <E> the type of elements maintained by this set
  * @author  Riccardo Paccagnella
  */
-public class LinkedMagicHashSet<E extends UniqueItem> extends MagicHashSet<E> implements MagicSet<E>, Serializable {
+public class LinkedMagicHashSet<E extends UniqueItem> extends MagicHashSet<E> {
     private static final long serialVersionUID = -4511779546048839898L;
 
     public LinkedMagicHashSet() {
