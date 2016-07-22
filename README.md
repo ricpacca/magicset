@@ -13,8 +13,8 @@ There are multiple ways to handle the situation when a client needs to modify th
 Imagine that each client has a small copy of this common model, that it uses to let the player interact with the
  game components.
 
-Assuming there are many instances (e.g. many cards of same classes) how can a client indicate to the server what 
- precise components of the game the player wants to modify?
+Assuming there are many repeated components (e.g. many cards instances of the same class) how can a client indicate to 
+ the server what precise components of the game the player wants to modify?
 
 One possible approach to handle the matching between server and client components is to use ids.
  
@@ -24,7 +24,7 @@ All the "interactive" components of the game can be marked with a unique id whic
 Given this approach, how can the server retrieve efficiently the original instance of the items indicated by the clients
  upon performing an action?
  
-A MagicSet answers this need in an efficient and elegant way, allowing to store unique items, and later manage them 
+A MagicSet provides an efficient and elegant solution to this need, allowing to store unique items, and later manage them 
  given only their ids.
 
 ## Usage
