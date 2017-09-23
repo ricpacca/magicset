@@ -42,7 +42,7 @@ class City extends UniqueItem {
 public class GameMap {
     private MagicSet<City> cities;
     
-    public GameMap(Collection<Card> cities) {
+    public GameMap(Collection<City> cities) {
         cities = new MagicHashSet<>(cities);
     }
     
